@@ -27,6 +27,21 @@ namespace pet_hotel.Controllers
                 .Include(pet => pet.petOwner);
         }
 
+        [HttpGet("{id}")]
+        public Pet GetById(int id) {
+            return _context.Pets
+                .Include(pet => pet.petOwner)
+                .SingleOrDefault(p => p.id == id);
+        }
+
+        [HttpPost]
+        public Pet Post(Pet pet) {
+            _context.Add(pet);
+            _context.SaveChanges();
+
+            return pet;
+        }
+
         // [HttpGet]
         // [Route("test")]
         // public IEnumerable<Pet> GetPets() {
