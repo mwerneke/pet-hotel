@@ -57,7 +57,26 @@ namespace pet_hotel.Controllers
             _context.Pets.Remove(pet);
             _context.SaveChanges();
         }
+
+        [HttpPut("{id}/checkin")]
+        public Pet Put(int id)
+        {
+            // grabbing the pet info from db
+            Pet pet = _context.Pets.Find(id);
+
+            // modifying the pet info (not on db yet)
+            pet.checkedInAt = DateTime.Now;
+
+            // update the db with new pet info and
+            // save changes to db
+            _context.Pets.Update(pet);
+            _context.SaveChanges();
+
+            return pet;
+        }
         
+
+        // TESTING STUFF
         // [HttpGet]
         // [Route("test")]
         // public IEnumerable<Pet> GetPets() {
