@@ -21,6 +21,39 @@ namespace pet_hotel.Controllers
         [HttpGet]
         public IEnumerable<PetOwner> GetList() {
             return _context.PetOwners;
+
         }
+        //Creates a pet within the petOwner database
+        [HttpPost]
+        public PetOwner Post(PetOwner petOwner) {
+            _context.Add(petOwner);
+            _context.SaveChanges();
+
+            return petOwner;
+        }
+        //Get pet owner by ID
+         [HttpGet("{id}")]
+        public PetOwner GetById(int id) {
+            return _context.PetOwners
+                .SingleOrDefault(p => p.id == id);
+        }
+        // Delete petOwners by ID
+        [HttpDelete("{id}")]
+        public void Delete(int id) {
+            PetOwner petOwner = _context.PetOwners.Find(id);
+            _context.PetOwners.Remove(petOwner);
+            _context.SaveChanges();
+        }
+        //
+        [HttpPut("{id}")]
+        public PetOwner Put(int id, PetOwner petOwner) {
+
+            _context.PetOwners.Update(petOwner);
+            _context.SaveChanges();
+
+            return petOwner;
+        }
+
+
     }
 }
