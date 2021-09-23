@@ -74,6 +74,26 @@ namespace pet_hotel.Controllers
 
             return pet;
         }
+
+        [HttpPut("{id}/checkout")]
+
+        // declare 2nd variable to ensure the line below
+        // isn't identified somewhere else
+        public Pet Put(int id, int a)
+        {
+            // grabbing the pet info from db
+            Pet pet = _context.Pets.Find(id);
+
+            // modifying the pet info (not on db yet)
+            pet.checkedInAt = null;
+
+            // update the db with new pet info and
+            // save changes to db
+            _context.Pets.Update(pet);
+            _context.SaveChanges();
+
+            return pet;
+        }
         
 
         // TESTING STUFF
