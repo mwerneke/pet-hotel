@@ -1,20 +1,14 @@
 # Pet Hotel
 
+This project was an assignment given to students, in which we began the week knowing nothing about `C#` and `.NET` and were challenged to explore the topic in depth. After two lectures, we were able to demonstrate our ability to execute the `CRUD` operations by implenting our self created `RestAPI` Below is more details on the project 
+
+
 This is a standard c-sharp project that was started with `dotnet new react --no-https -o project-name`. In addition:
 
-  - Postgres support is added and ready to go. The connection string can be updated in `appsettings.json`.
-  - `package.json` stub has been added at the root level. This file exists only to satisfy the nodejs buildpack on heroku. It is not used in any way for the project.
-  - Client App is in different Repo: https://github.com/PrimeAcademy/pethotel-dotnet-frontend
 
 The client is available at `http://localhost:3000` and set up to proxy 
 back to the dotnet API. The dotnet API is available at `http://localhost:5000/` and ALSO set up to proxy non-api requests to the webpack server. Both should work, although the convention for dotnet is to go directly through the dotnet app @ `http://localhost:5000`.
 
-## Screenshots
-### Pet Hotel UI (working with base goals met)
-![Pet Hotel Screenshot](pet-hotel.png)
-
-### Passing Tests (npm test)
-![Passing Tests](tests.png)
 
 ## Project Requirements
 
@@ -22,7 +16,7 @@ Your job is to build the backend for the Pet Hotel! The React App is
 ready to go. For base mode you do not need to update the React App at all. Simply clone the frontend, run `npm install`, and 
 `npm start` to run the client application. Build the HTTP API until all of the functionality of the Client App is working:
 
-   - All 11 jest tests are passing (see below)
+  
    - Loading the page shows Pets and Pet Owners in the table.
    - User can add a new Pet Owner (and see error validations).
    - User can add new Pets, associated with pet owners (and see error validations).
@@ -40,30 +34,6 @@ Your general approach should be like so:
    5. Test controllers with PostMan and the jest tests
    6. Make sure the ReactApp is working appropriately
 
-A recommended approach would be to start with PetOwners, since they're the simplest model. You should be able to get most of the model functioning, the controller working, and the endpoints working before starting on the Pet model.
-
-### Stretch Goals
-
-  - Have fun with the styling! Change things around, swap colors/fonts/textures, etc. 
-  - Create a new resource: `Transaction`. This transaction tracks the history of the hotel. A new transaction is created whenever a pet is checked in or checked out, a pet is created or deleted, or a pet owner is created or deleted, etc. It could be a simple timestamp and string of what happenens.
-    - Create the model
-    - Add the model to the ApplicationContext
-    - Create the database migration
-    - Create the controller
-    - Create the relevant jest tests
-    - Show all recent transactions in the react app.
-  - Add a profile image to your pets (via internet URL) or a drop-down of available URLs. You'll need to add the field and migration for the new field. Consider Updating the tests to check that images make it!
-  - Use the model validations returned from the server to highlight which fields have the validation error. Hint: The error coming back will often contain the field name, which will match the name of the element on the form. See sourdough bakery for examples (the React App already has plumbing for default validation message format).
-  - Add the ability to edit pet names
-  - Add the ability to edit pet owners' name, email address
-  - Add pagination to one (or all) of the resources. You can do this with optional parameters: `/api/petowners/?start=0&limit=10`, next page: `/api/petowners/?start=10&limit=10` etc. `Transaction` would benefit greatly from this.
-  - Move alerts up to global redux state and share alert state between the tables
-  - Move alerts to be 'toasts': they show up in the corner and auto-dismiss themselves after 5 seconds.
-  - Prevent the PetOwner from being deleted if they have any pets that are checked in.
-  - If a pet is deleted and their owner no longer has any pets in the hotel, delete the owner too.
-  - Add a 'Are you sure?' prompt to the delete buttons on the client app.
-  - Add additional tests to test for proper validation errors.
-  - Deploy to Heroku using the dotnet buildpack (See cohort notes for more info).
 
 ## HTTP API Requirements
 
@@ -76,9 +46,6 @@ A `4xx` status code should be used for errors (`404` if model with id is not fou
 
 For all API requests that require an id in the URL, the format `/api/resource/:id` is used. For example, to delete a pet with a primary key of `5`, you would use `DELETE /api/resource/5`.
 
-### Jest Tests
-
-This project is ready to go with a suite of tests that hit the expected endpoints and check the reponses. Once all tests pass, your job is done! The tests are set up in the front end repo. Run `npm test` to run the tests. See `/tests/http-api.test.js` for more information. Study the tests to see how the API is meant to be used!
 
 ### Pet Owner Object
 
